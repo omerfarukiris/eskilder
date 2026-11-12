@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "saglik",
     "icerik",
+    "iletisim",
 ]
 
 MIDDLEWARE = [
@@ -119,3 +120,12 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny"],
     "UNAUTHENTICATED_USER": None,
 }
+
+# E-posta bildirimi: EMAIL_HOST boşsa gönderilmez, mesajlar yalnız panelde durur.
+EMAIL_HOST = ortam("EMAIL_HOST")
+EMAIL_PORT = int(ortam("EMAIL_PORT", "587"))
+EMAIL_HOST_USER = ortam("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = ortam("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = ortam_bool("EMAIL_USE_TLS", True)
+EMAIL_TIMEOUT = 8
+DEFAULT_FROM_EMAIL = ortam("DEFAULT_FROM_EMAIL") or EMAIL_HOST_USER or "noreply@localhost"
