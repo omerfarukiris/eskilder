@@ -5,7 +5,10 @@ body {
   margin: 0; background: var(--renk-zemin); color: var(--renk-metin);
   font-family: var(--font-metin); font-size: 17px; line-height: 1.65;
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  /* Türkçe metinde 'fi/fı' gibi bağlı harfler ve Fraunces'in eğik (WONK) harfleri garip görünüyor */
+  font-variant-ligatures: no-common-ligatures no-discretionary-ligatures;
 }
+h1, h2, h3, h4 { font-variation-settings: "WONK" 0; }
 img { max-width: 100%; display: block; }
 a { color: var(--renk-ana); text-underline-offset: 3px; }
 a:hover { color: var(--renk-vurgu); }
@@ -48,7 +51,7 @@ p { margin: 0 0 1em; }
 .zengin h3 { margin-top: 1.2em; }
 .zengin ul, .zengin ol { padding-left: 1.3em; }
 .zengin li { margin-bottom: .35em; }
-.zengin blockquote { margin: 1.5em 0; padding: 1em 1.4em; border-left: 4px solid var(--renk-vurgu); background: var(--renk-vurgu-acik); border-radius: 0 var(--yaricap-kucuk) var(--yaricap-kucuk) 0; font-family: var(--font-baslik); font-size: 1.25rem; color: var(--renk-ana-koyu); }
+.zengin blockquote { margin: 1.5em 0; padding: 1em 1.4em; border-left: 4px solid var(--renk-vurgu); background: var(--renk-vurgu-acik); border-radius: 0 var(--yaricap-kucuk) var(--yaricap-kucuk) 0; font-family: var(--font-metin); font-size: 1.15rem; font-weight: 500; line-height: 1.7; color: var(--renk-ana-koyu); }
 .metin-kolon { max-width: 760px; }
 
 .iskelet { background: linear-gradient(90deg, #ece6dc 25%, #f5f0e8 50%, #ece6dc 75%); background-size: 200% 100%; animation: iskelet 1.2s infinite; border-radius: var(--yaricap-kucuk); }
