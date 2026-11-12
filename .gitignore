@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+frontend/dist/
+backend/media/
+.env
+.env.*
+db.sqlite3
+.superpowers/
+.DS_Store
+.vercel/
