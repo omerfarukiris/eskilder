@@ -39,7 +39,7 @@ HAKKIMIZDA = """
 lise ve üniversite eğitimlerini desteklemek için bir araya gelen Eskillilerin kurduğu bir dernektir.</p>
 <p>Gelirimizin tamamı, memleketine gönül vermiş Eskilli iş insanlarının ve hayırseverlerin bağışlarından oluşur.
 Her yıl başvuruları değerlendirip ihtiyaç sahibi öğrencilerimize karşılıksız burs veriyoruz.</p>
-<blockquote>“Kim ilim öğrenmek için bir yola girerse, Allah ona cennete giden yolu kolaylaştırır.”<br>— Hadis-i Şerif (Müslim, Zikir 38)</blockquote>
+<blockquote>“İnsan ölünce şu üç şey dışında ameli kesilir: sadaka-i câriye, kendisinden faydalanılan ilim ve kendisine dua eden hayırlı evlat.”<br>— Hadis-i Şerif (Müslim, Vasiyyet 14)</blockquote>
 """
 
 KVKK = """

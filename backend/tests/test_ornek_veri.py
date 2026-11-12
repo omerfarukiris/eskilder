@@ -38,7 +38,7 @@ def test_hakkimizda_ornek_notu_yok_ve_yeni_alinti():
     call_command("ornek_veri_yukle")
     metin = SiteAyarlari.yukle().hakkimizda_metni
     assert "Örnek metin" not in metin and "panelden" not in metin
-    assert "cennete giden yolu kolaylaştırır" in metin and "Müslim" in metin and "lise ve üniversite" in metin
+    assert "sadaka-i câriye" in metin and "Vasiyyet 14" in metin and "lise ve üniversite" in metin
 
 
 @pytest.mark.django_db
