@@ -34,7 +34,7 @@ export default function Ust() {
         <nav id="ana-menu" className={`${stil.menu} ${acik ? stil.menuAcik : ""}`} aria-label="Ana menü">
           <ul>
             {MENU.map((m) => (
-              <li key={m.yol}>
+              <li key={m.yol} className={m.yol === "/" ? stil.sadeceMobil : undefined}>
                 <NavLink to={m.yol} end={m.yol === "/"} onClick={() => setAcik(false)}
                   className={({ isActive }) => (isActive ? stil.aktif : undefined)}>
                   {m.ad}

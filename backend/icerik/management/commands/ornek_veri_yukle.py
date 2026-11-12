@@ -21,7 +21,7 @@ BURS_METNI = """
 <h2>Kimler başvurabilir?</h2>
 <ul>
 <li>Nüfusu Aksaray'ın Eskil ilçesine kayıtlı olan,</li>
-<li>Bir üniversitede ön lisans veya lisans öğrenimine devam eden öğrenciler.</li>
+<li>Bir lisede ya da üniversitede (ön lisans veya lisans) öğrenimine devam eden öğrenciler.</li>
 </ul>
 <h2>Burs koşulları</h2>
 <ul>
@@ -35,7 +35,7 @@ kargo ya da PTT ile dernek adresimize gönderin. Başvuru tarihleri her dönem D
 
 HAKKIMIZDA = """
 <p><strong>Örnek metin — panelden değiştirin.</strong> Eskilder, Aksaray'ın Eskil ilçesinden yetişen gençlerin
-üniversite eğitimlerini desteklemek için bir araya gelen Eskillilerin kurduğu bir dernektir.</p>
+lise ve üniversite eğitimlerini desteklemek için bir araya gelen Eskillilerin kurduğu bir dernektir.</p>
 <p>Gelirimizin tamamı, memleketine gönül vermiş Eskilli iş insanlarının ve hayırseverlerin bağışlarından oluşur.
 Her yıl başvuruları değerlendirip ihtiyaç sahibi öğrencilerimize karşılıksız burs veriyoruz.</p>
 <blockquote>Memleketlinin memleketliye desteği.</blockquote>
@@ -118,7 +118,7 @@ class Command(BaseCommand):
             ayar.resmi_ad = "Eskil Kültür Eğitim ve Dayanışma Derneği"
             ayar.kisa_ad = "Eskilder"
             ayar.slogan = "Eskil'in çocukları için"
-            ayar.hero_metin = "Eskil'den yetişen gençlerin üniversite yolculuğunda, memleketlileri olarak yanlarındayız."
+            ayar.hero_metin = "Eskil'den yetişen gençlerin lise ve üniversite yolculuğunda, memleketlileri olarak yanlarındayız."
             ayar.eposta = "eskilder68@gmail.com"
             ayar.adres = "Çelebi Mah. Şehit Battal Yıldız Sk. Derinpark Sitesi No: 1/CF Karatay/Konya"
             ayar.telefon = "0 (332) 000 00 00"

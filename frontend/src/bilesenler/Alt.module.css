@@ -1,7 +1,7 @@
 .alt { background: var(--renk-ana-koyu); color: rgb(255 255 255 / 78%); padding: 64px 0 24px; margin-top: auto; }
 .alt a { color: #fff; text-decoration: none; }
 .alt a:hover { color: var(--renk-vurgu-acik); text-decoration: underline; }
-.izgara { display: grid; gap: 40px; grid-template-columns: 1.4fr 1fr 1.2fr; }
+.izgara { display: grid; gap: 40px; grid-template-columns: 1.4fr 1fr; }
 .tanim { margin: 14px 0 0; font-size: .95rem; max-width: 340px; }
 .baslik { font: 600 .8rem var(--font-metin); letter-spacing: .12em; text-transform: uppercase; color: var(--renk-vurgu-acik); margin: 0 0 14px; }
 .liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: .95rem; }
@@ -10,3 +10,4 @@
 .sosyal a { display: inline-block; padding: 6px 14px; border: 1px solid rgb(255 255 255 / 30%); border-radius: 999px; font-size: .9rem; }
 .son { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-top: 1px solid rgb(255 255 255 / 14%); margin-top: 48px; padding-top: 20px; font-size: .88rem; }
 @media (max-width: 860px) { .izgara { grid-template-columns: 1fr; gap: 32px; } }
+.sonBaglantilar { display: flex; gap: 20px; flex-wrap: wrap; }

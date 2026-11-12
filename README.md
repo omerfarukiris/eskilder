@@ -1,6 +1,6 @@
 # Eskilder — dernek sitesi (deneme sürümü)
 
-Eskil kökenli üniversite öğrencilerine burs veren Eskilder derneğinin tanıtım sitesi ve yönetim paneli.
+Eskil kökenli lise ve üniversite öğrencilerine burs veren Eskilder derneğinin tanıtım sitesi ve yönetim paneli.
 
 - **Ön yüz:** Vite + React (`frontend/`)
 - **Sunucu ve yönetim paneli:** Django + DRF + Unfold (`backend/`), Vercel Python fonksiyonu olarak çalışır (`api/index.py`)

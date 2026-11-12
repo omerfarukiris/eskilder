@@ -14,7 +14,7 @@ export default function Burs() {
   return (
     <>
       <SayfaUst etiket="Burs programı" baslik="Eskilli öğrencilere karşılıksız burs"
-        aciklama="Aksaray'ın Eskil ilçesinden yetişen üniversite öğrencilerimizin yanındayız." />
+        aciklama="Aksaray'ın Eskil ilçesinden yetişen lise ve üniversite öğrencilerimizin yanındayız." />
       <section className="bolum">
         <div className={`kap ${stil.ikiKolon}`}>
           <HtmlIcerik html={a.burs_metni} />

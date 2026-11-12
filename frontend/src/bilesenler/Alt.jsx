@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAyarlar } from "../api.jsx";
 import Logo from "./Logo.jsx";
-import { MENU } from "./Ust.jsx";
 import stil from "./Alt.module.css";
 
 const SOSYAL = [["facebook", "Facebook"], ["instagram", "Instagram"], ["x", "X"], ["youtube", "YouTube"]];
@@ -15,15 +14,8 @@ export default function Alt() {
         <div>
           <Logo acik />
           <p className={stil.tanim}>{a.resmi_ad}</p>
-          <p className={stil.tanim}>Eskil'den yetişen gençlerin üniversite yolculuğunda yanlarındayız.</p>
+          <p className={stil.tanim}>Eskil'den yetişen gençlerin eğitim yolculuğunda yanlarındayız.</p>
         </div>
-        <nav aria-label="Alt menü">
-          <h2 className={stil.baslik}>Sayfalar</h2>
-          <ul className={stil.liste}>
-            {MENU.slice(1).map((m) => <li key={m.yol}><Link to={m.yol}>{m.ad}</Link></li>)}
-            <li><Link to="/destek-ol">Destek Ol</Link></li>
-          </ul>
-        </nav>
         <div>
           <h2 className={stil.baslik}>İletişim</h2>
           <ul className={stil.liste}>
@@ -42,7 +34,10 @@ export default function Alt() {
       </div>
       <div className={`kap ${stil.son}`}>
         <span>© {new Date().getFullYear()} {a.kisa_ad || "Eskilder"}</span>
-        <Link to="/kvkk">KVKK Aydınlatma Metni</Link>
+        <span className={stil.sonBaglantilar}>
+          <Link to="/destek-ol">Destek Ol</Link>
+          <Link to="/kvkk">KVKK Aydınlatma Metni</Link>
+        </span>
       </div>
     </footer>
   );

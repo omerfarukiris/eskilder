@@ -5,7 +5,7 @@ Durum: Taslak (onay bekliyor)
 
 ## 1. Amaç ve neden
 
-Eskilder (Aksaray Eskil kökenli bir dernek), Eskil'den çıkmış üniversite öğrencilerine
+Eskilder (Aksaray Eskil kökenli bir dernek), Eskil'den çıkmış lise ve üniversite öğrencilerine
 karşılıksız burs veriyor. Derneğin geliri Eskilli iş insanlarının bağışlarından geliyor:
 memleketlinin memleketliye desteği.
 

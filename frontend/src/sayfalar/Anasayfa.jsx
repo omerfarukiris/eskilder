@@ -24,7 +24,7 @@ export default function Anasayfa() {
           <span className={stil.heroEtiket}>Aksaray · Eskil</span>
           <h1>{a.slogan || "Eskil'in çocukları için"}</h1>
           <p className={stil.heroMetin}>
-            {a.hero_metin || "Eskil'den yetişen gençlerin üniversite yolculuğunda, memleketlileri olarak yanlarındayız."}
+            {a.hero_metin || "Eskil'den yetişen gençlerin lise ve üniversite yolculuğunda, memleketlileri olarak yanlarındayız."}
           </p>
           <div className={stil.heroButonlar}>
             <Link to="/destek-ol" className="buton buton-ana">Destek Ol</Link>
