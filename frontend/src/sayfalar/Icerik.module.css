@@ -1,0 +1,42 @@
+.acikZemin { background: var(--renk-ana-acik); }
+.kurul { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); }
+.kurul li { background: var(--renk-yuzey); border-radius: var(--yaricap); padding: 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; box-shadow: var(--golge); }
+.kurul img, .basHarf { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; }
+.basHarf { display: grid; place-items: center; background: var(--renk-ana); color: var(--renk-vurgu-acik); font: 700 2.2rem var(--font-baslik); }
+.kurul strong { font-family: var(--font-baslik); font-size: 1.1rem; color: var(--renk-ana-koyu); }
+.kurul span { color: var(--renk-metin-soluk); font-size: .92rem; }
+
+.ikiKolon { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 48px; align-items: start; }
+@media (max-width: 900px) { .ikiKolon { grid-template-columns: 1fr; } }
+.yanKutu { position: sticky; top: calc(var(--ust-yukseklik) + 24px); background: var(--renk-yuzey); border-radius: var(--yaricap); padding: 28px; box-shadow: var(--golge); }
+.yanKutu h2 { font-size: 1.3rem; }
+.belgeler { list-style: none; padding: 0; margin: 0 0 20px; display: grid; gap: 10px; }
+.belgeler a { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid var(--renk-cizgi); border-radius: 10px; text-decoration: none; color: var(--renk-ana-koyu); font-weight: 500; transition: border-color var(--gecis), background var(--gecis); }
+.belgeler a:hover { border-color: var(--renk-ana); background: var(--renk-ana-acik); }
+.belgeIkon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 8px; background: var(--renk-vurgu-acik); color: var(--renk-vurgu); font-size: .72rem; font-weight: 700; flex-shrink: 0; }
+
+.detay { max-width: 820px; }
+.detayKapak { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--yaricap); margin: 0 0 32px; box-shadow: var(--golge); }
+.geri { display: inline-flex; gap: 6px; margin-bottom: 24px; text-decoration: none; font-weight: 600; }
+.bilgiSatiri { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--renk-metin-soluk); margin-bottom: 28px; }
+
+.sekmeler { display: inline-flex; gap: 4px; padding: 4px; background: var(--renk-yuzey); border: 1px solid var(--renk-cizgi); border-radius: 999px; margin-bottom: 28px; }
+.sekmeler button { border: 0; background: transparent; padding: 10px 20px; border-radius: 999px; font: 600 .95rem var(--font-metin); color: var(--renk-metin-soluk); cursor: pointer; min-height: 44px; }
+.sekmeler button[aria-selected="true"] { background: var(--renk-ana); color: #fff; }
+
+.firmalar { list-style: none; padding: 0; margin: 0 0 56px; display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
+.firmalar li { background: var(--renk-yuzey); border-radius: var(--yaricap); padding: 28px 24px; box-shadow: var(--golge); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+.firmalar img { max-height: 72px; width: auto; }
+.firmalar strong { font-family: var(--font-baslik); font-size: 1.15rem; color: var(--renk-ana-koyu); }
+.not { font-size: .9rem; color: var(--renk-metin-soluk); }
+.kisiler { list-style: none; padding: 0; margin: 0; columns: 3 220px; column-gap: 32px; }
+.kisiler li { break-inside: avoid; padding: 12px 0; border-bottom: 1px solid var(--renk-cizgi); }
+.kisiler strong { display: block; color: var(--renk-ana-koyu); }
+
+.ibanKutu { background: var(--renk-ana); color: #fff; border-radius: var(--yaricap); padding: 32px; box-shadow: var(--golge-buyuk); }
+.ibanKutu h2 { color: #fff; font-size: 1.3rem; }
+.iban { display: block; font: 600 clamp(1.05rem, 3.6vw, 1.5rem)/1.4 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: .04em; margin: 12px 0 20px; word-break: break-word; user-select: all; color: var(--renk-vurgu-acik); }
+.ibanBilgi { margin: 0 0 4px; color: rgb(255 255 255 / 82%); font-size: .95rem; }
+.adimlar { list-style: none; counter-reset: adim; padding: 0; margin: 24px 0 0; display: grid; gap: 16px; }
+.adimlar li { counter-increment: adim; display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start; }
+.adimlar li::before { content: counter(adim); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--renk-vurgu-acik); color: var(--renk-vurgu); font-weight: 700; }
