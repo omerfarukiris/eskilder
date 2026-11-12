@@ -1,10 +1,9 @@
 .logo { display: inline-flex; align-items: center; gap: 10px; color: var(--renk-ana-koyu); }
 .acik { color: #fff; }
-.resim { height: 44px; width: auto; }
-.buyuk.resim { height: 120px; }
-.isaret { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 11px; background: var(--renk-ana); color: var(--renk-vurgu-acik); font: 700 1.5rem/1 var(--font-baslik); }
-.acik .isaret { background: var(--renk-vurgu-acik); color: var(--renk-ana); }
+.isaret { height: 46px; width: auto; flex-shrink: 0; }
+.acik .isaret { background: #fff; border-radius: 12px; padding: 4px 6px; height: 52px; }
 .yazi { font: 700 1.4rem/1 var(--font-baslik); letter-spacing: -0.01em; }
-.buyuk .isaret { width: 96px; height: 96px; border-radius: 26px; font-size: 3.6rem; }
-.buyuk .yazi { font-size: 3rem; }
-.buyuk { flex-direction: column; gap: 18px; }
+.resim { height: 48px; width: auto; }
+.resimBuyuk { height: min(42vh, 280px); }
+.tamKutu { display: grid; place-items: center; background: #fff; border-radius: 28px; padding: 22px 26px; box-shadow: 0 24px 60px rgb(0 0 0 / 30%); }
+.tam { height: min(38vh, 260px); width: auto; }

@@ -1,17 +1,27 @@
 import { useAyarlar } from "../api.jsx";
 import stil from "./Logo.module.css";
 
-/** Panelde logo varsa onu, yoksa yazı logosunu gösterir. */
+/**
+ * Eskilder logosu. Panelden logo yüklenmişse o kullanılır; yoksa repodaki vektör logo.
+ * buyuk: açılış ekranı için tam logo (1929 + ESKİLDER yazısıyla).
+ */
 export default function Logo({ acik = false, buyuk = false }) {
   const ayar = useAyarlar();
-  const sinif = [stil.logo, acik && stil.acik, buyuk && stil.buyuk].filter(Boolean).join(" ");
+  const ad = ayar.kisa_ad || "Eskilder";
   if (ayar.logo) {
-    return <img className={`${sinif} ${stil.resim}`} src={ayar.logo} alt={ayar.kisa_ad || "Eskilder"} />;
+    return <img className={`${stil.resim} ${buyuk ? stil.resimBuyuk : ""}`} src={ayar.logo} alt={ad} />;
+  }
+  if (buyuk) {
+    return (
+      <span className={stil.tamKutu}>
+        <img className={stil.tam} src="/logo.svg" alt={ad} />
+      </span>
+    );
   }
   return (
-    <span className={sinif} aria-label={ayar.kisa_ad || "Eskilder"}>
-      <span className={stil.isaret} aria-hidden="true">E</span>
-      <span className={stil.yazi} aria-hidden="true">{ayar.kisa_ad || "Eskilder"}</span>
+    <span className={`${stil.logo} ${acik ? stil.acik : ""}`}>
+      <img className={stil.isaret} src="/logo-isaret.svg" alt="" aria-hidden="true" />
+      <span className={stil.yazi}>{ad}</span>
     </span>
   );
 }

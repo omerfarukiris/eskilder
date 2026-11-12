@@ -142,6 +142,7 @@ EMAIL_USE_TLS = ortam_bool("EMAIL_USE_TLS", True)
 EMAIL_TIMEOUT = 8
 DEFAULT_FROM_EMAIL = ortam("DEFAULT_FROM_EMAIL") or EMAIL_HOST_USER or "noreply@localhost"
 
+from django.templatetags.static import static  # noqa: E402
 from django.urls import reverse_lazy  # noqa: E402
 
 
@@ -153,7 +154,8 @@ UNFOLD = {
     "SITE_TITLE": "Eskilder Yönetim",
     "SITE_HEADER": "Eskilder Yönetim",
     "SITE_SUBHEADER": "Site içeriği",
-    "SITE_SYMBOL": "volunteer_activism",
+    "SITE_ICON": lambda request: static("icerik/logo-isaret.svg"),
+    "SITE_FAVICONS": [{"rel": "icon", "type": "image/svg+xml", "href": lambda request: static("icerik/logo-isaret.svg")}],
     "SITE_URL": SITE_URL,
     "SHOW_HISTORY": True,
     "SHOW_VIEW_ON_SITE": False,
