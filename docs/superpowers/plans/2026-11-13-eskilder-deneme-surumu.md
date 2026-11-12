@@ -95,7 +95,7 @@ eskilder/
 
 ---
 
-### Görev 1: Depo iskeleti, Django ayarları, sağlık uç noktası
+### Task 1: Depo iskeleti, Django ayarları, sağlık uç noktası
 
 **Dosyalar:**
 - Oluştur:
@@ -150,7 +150,7 @@ def test_saglik_dogru_anahtar_200(client, settings):
 
 ---
 
-### Görev 2: Ortak yardımcılar (slug, HTML temizleme) ve içerik modelleri
+### Task 2: Ortak yardımcılar (slug, HTML temizleme) ve içerik modelleri
 
 **Dosyalar:**
 - Oluştur: `backend/ortak/slug.py`, `backend/ortak/html.py`, `backend/icerik/models.py` (+ migration)
@@ -225,7 +225,7 @@ def test_dokuman_4mb_ustu_reddedilir(db): ...  # 4*1024*1024+1 baytlık SimpleUp
 
 ---
 
-### Görev 3: Görsel işleme ve depolama
+### Task 3: Görsel işleme ve depolama
 
 **Dosyalar:**
 - Oluştur: `backend/ortak/gorsel.py`
@@ -271,7 +271,7 @@ def test_s3_url_supabase_public_yolu(settings): # ortam ayarlanınca default_sto
 
 ---
 
-### Görev 4: Örnek veri komutu
+### Task 4: Örnek veri komutu
 
 **Dosyalar:**
 - Oluştur: `backend/icerik/management/commands/ornek_veri_yukle.py`, `backend/icerik/ornek_veri/` (yer tutucu görseller)
@@ -317,7 +317,7 @@ def test_ornek_veri_iki_kez_calisinca_cogalmaz(db):
 
 ---
 
-### Görev 5: Salt-okunur içerik API'si
+### Task 5: Salt-okunur içerik API'si
 
 **Dosyalar:**
 - Oluştur: `backend/icerik/serializers.py`, `backend/icerik/api.py`
@@ -357,7 +357,7 @@ def test_ornek_veri_iki_kez_calisinca_cogalmaz(db):
 
 ---
 
-### Görev 6: İletişim formu uç noktası, hız sınırı, temizlik
+### Task 6: İletişim formu uç noktası, hız sınırı, temizlik
 
 **Dosyalar:**
 - Oluştur: `backend/iletisim/models.py`, `backend/iletisim/api.py`, `backend/iletisim/servis.py`, `backend/ortak/ip.py`
@@ -400,7 +400,7 @@ def test_ornek_veri_iki_kez_calisinca_cogalmaz(db):
 
 ---
 
-### Görev 7: Yönetim paneli (Unfold)
+### Task 7: Yönetim paneli (Unfold)
 
 **Dosyalar:**
 - Oluştur: `backend/icerik/admin.py`, `backend/iletisim/admin.py`, `backend/icerik/static/icerik/admin/gorsel_kucult.js`, `backend/icerik/static/icerik/admin/galeri_yukle.js`, `backend/icerik/migrations/00xx_editor_grubu.py`, `backend/icerik/views_yonetim.py`
@@ -462,7 +462,7 @@ def test_ornek_veri_iki_kez_calisinca_cogalmaz(db):
 
 ---
 
-### Görev 8: Paylaşım meta sayfaları, sitemap, robots
+### Task 8: Paylaşım meta sayfaları, sitemap, robots
 
 **Dosyalar:**
 - Oluştur: `backend/icerik/og.py`, `backend/icerik/sitemap.py`
@@ -494,7 +494,7 @@ def test_ornek_veri_iki_kez_calisinca_cogalmaz(db):
 
 ---
 
-### Görev 9: Ön yüz iskeleti, tema, düzen, API istemcisi
+### Task 9: Ön yüz iskeleti, tema, düzen, API istemcisi
 
 **Dosyalar:**
 - Oluştur: `frontend/` (Vite React JS şablonu), `src/api.js`, `src/App.jsx`, `src/stil/tema.css`, `src/stil/genel.css`, `src/bilesenler/Ust.jsx`, `src/bilesenler/Alt.jsx`, `src/sayfalar/Bulunamadi.jsx`
@@ -528,7 +528,7 @@ def test_ornek_veri_iki_kez_calisinca_cogalmaz(db):
 
 ---
 
-### Görev 10: Açılış animasyonu ve ana sayfa
+### Task 10: Açılış animasyonu ve ana sayfa
 
 **Dosyalar:**
 - Oluştur: `src/bilesenler/Acilis.jsx`, `Acilis.module.css`, `src/sayfalar/Anasayfa.jsx`, `Anasayfa.module.css`, `src/bilesenler/Kart.jsx`
@@ -563,7 +563,7 @@ def test_ornek_veri_iki_kez_calisinca_cogalmaz(db):
 
 ---
 
-### Görev 11: İçerik sayfaları
+### Task 11: İçerik sayfaları
 
 **Dosyalar:**
 - Oluştur:
@@ -597,7 +597,7 @@ def test_ornek_veri_iki_kez_calisinca_cogalmaz(db):
 
 ---
 
-### Görev 12: İletişim sayfası
+### Task 12: İletişim sayfası
 
 **Dosyalar:**
 - Oluştur: `src/sayfalar/Iletisim.jsx`, `Iletisim.module.css`
@@ -632,7 +632,7 @@ def test_ornek_veri_iki_kez_calisinca_cogalmaz(db):
 
 ---
 
-### Görev 13: Vercel ve Supabase kurulumu, yayın, duman testi
+### Task 13: Vercel ve Supabase kurulumu, yayın, duman testi
 
 **Dosyalar:**
 - Oluştur: `vercel.json`, `scripts/collectstatic.sh`, `README.md` (kurulum, ortam değişkenleri, yönetici kullanıcısı oluşturma)
