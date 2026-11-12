@@ -1,0 +1,10 @@
+{% load static %}
+{% if galeri_yukle_url %}
+<div id="galeri-yukle" data-url="{{ galeri_yukle_url }}" class="border border-base-200 rounded-default p-6 mt-6 bg-white dark:bg-base-900 dark:border-base-800">
+    <h2 class="font-semibold text-important mb-2">Fotoğrafları toplu ekle</h2>
+    <p class="text-subtle mb-4">Birden çok fotoğraf seçin; telefonda çekilmiş büyük fotoğraflar otomatik küçültülür ve tek tek yüklenir. Bittiğinde sayfa yenilenir. <strong>Önce bu sayfadaki değişiklikleri kaydedin.</strong></p>
+    <input type="file" accept="image/*" multiple data-galeri-girdi>
+    <ul data-galeri-durum class="mt-4 flex flex-col gap-1"></ul>
+</div>
+<script src="{% static 'icerik/admin/galeri_yukle.js' %}" defer></script>
+{% endif %}

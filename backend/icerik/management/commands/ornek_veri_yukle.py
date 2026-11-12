@@ -143,7 +143,7 @@ class Command(BaseCommand):
         for i, (ad, gorev) in enumerate(KURUL):
             YonetimKuruluUyesi.objects.get_or_create(ad_soyad=ad, defaults={"gorev": gorev, "sira": i})
 
-        simdi = timezone.now()
+        simdi = timezone.localtime()
         if not Etkinlik.objects.filter(baslik="Örnek: Geleneksel Eskilliler Buluşması").exists():
             Etkinlik.objects.create(
                 baslik="Örnek: Geleneksel Eskilliler Buluşması", tur="bulusma",

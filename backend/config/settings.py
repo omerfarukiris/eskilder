@@ -26,6 +26,8 @@ SITE_URL = ortam("SITE_URL", "http://localhost:5173").rstrip("/")
 CRON_SECRET = ortam("CRON_SECRET")
 
 INSTALLED_APPS = [
+    "unfold",
+    "unfold.contrib.forms",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -55,7 +57,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -129,3 +131,64 @@ EMAIL_HOST_PASSWORD = ortam("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = ortam_bool("EMAIL_USE_TLS", True)
 EMAIL_TIMEOUT = 8
 DEFAULT_FROM_EMAIL = ortam("DEFAULT_FROM_EMAIL") or EMAIL_HOST_USER or "noreply@localhost"
+
+from django.urls import reverse_lazy  # noqa: E402
+
+
+def _baglanti(ad):
+    return reverse_lazy(f"admin:{ad}")
+
+
+UNFOLD = {
+    "SITE_TITLE": "Eskilder Yönetim",
+    "SITE_HEADER": "Eskilder Yönetim",
+    "SITE_SUBHEADER": "Site içeriği",
+    "SITE_SYMBOL": "volunteer_activism",
+    "SITE_URL": SITE_URL,
+    "SHOW_HISTORY": True,
+    "SHOW_VIEW_ON_SITE": False,
+    "DASHBOARD_CALLBACK": "icerik.views_yonetim.ozet",
+    "COLORS": {
+        "primary": {
+            "50": "oklch(97% .02 160)", "100": "oklch(94% .04 160)", "200": "oklch(88% .07 160)",
+            "300": "oklch(78% .09 160)", "400": "oklch(66% .1 160)", "500": "oklch(55% .1 160)",
+            "600": "oklch(46% .09 160)", "700": "oklch(39% .08 160)", "800": "oklch(32% .06 160)",
+            "900": "oklch(27% .05 160)", "950": "oklch(20% .04 160)",
+        },
+    },
+    "SIDEBAR": {
+        "show_search": False,
+        "show_all_applications": False,
+        "navigation": [
+            {
+                "title": "İçerik",
+                "items": [
+                    {"title": "Ana Sayfa (özet)", "icon": "dashboard", "link": reverse_lazy("admin:index")},
+                    {"title": "Duyurular", "icon": "campaign", "link": _baglanti("icerik_duyuru_changelist")},
+                    {"title": "Etkinlikler & Buluşmalar", "icon": "event", "link": _baglanti("icerik_etkinlik_changelist")},
+                    {"title": "Destekçiler", "icon": "handshake", "link": _baglanti("icerik_destekci_changelist")},
+                    {"title": "Gelen Mesajlar", "icon": "mail", "link": _baglanti("iletisim_iletisimmesaji_changelist"),
+                     "badge": "icerik.views_yonetim.okunmamis_mesaj_rozeti"},
+                ],
+            },
+            {
+                "title": "Sayfa bilgileri",
+                "items": [
+                    {"title": "Etki Rakamları", "icon": "monitoring", "link": _baglanti("icerik_etkirakami_changelist")},
+                    {"title": "Yönetim Kurulu", "icon": "groups", "link": _baglanti("icerik_yonetimkuruluuyesi_changelist")},
+                    {"title": "Belgeler", "icon": "description", "link": _baglanti("icerik_dokuman_changelist")},
+                    {"title": "Site Ayarları", "icon": "settings", "link": _baglanti("icerik_siteayarlari_changelist")},
+                ],
+            },
+            {
+                "title": "Sistem",
+                "items": [
+                    {"title": "Kullanıcılar", "icon": "person", "link": _baglanti("auth_user_changelist"),
+                     "permission": "icerik.views_yonetim.sadece_super"},
+                    {"title": "Gruplar", "icon": "admin_panel_settings", "link": _baglanti("auth_group_changelist"),
+                     "permission": "icerik.views_yonetim.sadece_super"},
+                ],
+            },
+        ],
+    },
+}

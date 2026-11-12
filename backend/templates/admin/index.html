@@ -1,0 +1,45 @@
+{% extends 'admin/base.html' %}
+{% load i18n unfold %}
+
+{% block title %}Özet | {{ site_title }}{% endblock %}
+
+{% block branding %}
+    {% include "unfold/helpers/site_branding.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="flex flex-col gap-6">
+    <div class="grid gap-6 md:grid-cols-3">
+        {% url 'admin:iletisim_iletisimmesaji_changelist' as mesaj_url %}
+        {% component "unfold/components/card.html" with title="Okunmamış mesaj" href=mesaj_url|add:"?durum__exact=yeni" %}
+            <p class="text-3xl font-semibold text-important">{{ okunmamis }}</p>
+        {% endcomponent %}
+        {% url 'admin:icerik_duyuru_add' as duyuru_ekle %}
+        {% component "unfold/components/card.html" with title="Hızlı işlem" href=duyuru_ekle %}
+            <p class="text-important">+ Yeni duyuru ekle</p>
+        {% endcomponent %}
+        {% url 'admin:icerik_etkinlik_add' as etkinlik_ekle %}
+        {% component "unfold/components/card.html" with title="Hızlı işlem" href=etkinlik_ekle %}
+            <p class="text-important">+ Yeni etkinlik / buluşma ekle</p>
+        {% endcomponent %}
+    </div>
+    <div class="grid gap-6 md:grid-cols-2">
+        {% component "unfold/components/card.html" with title="Son duyurular" %}
+            <ul class="flex flex-col gap-2">
+            {% for d in son_duyurular %}
+                <li><a class="text-primary-600 dark:text-primary-500" href="{% url 'admin:icerik_duyuru_change' d.pk %}">{{ d.baslik }}</a>
+                    <span class="text-subtle">— {{ d.yayin_tarihi|date:"j F Y" }}{% if not d.yayinda %} (taslak){% endif %}</span></li>
+            {% empty %}<li class="text-subtle">Henüz duyuru yok.</li>{% endfor %}
+            </ul>
+        {% endcomponent %}
+        {% component "unfold/components/card.html" with title="Yaklaşan etkinlikler" %}
+            <ul class="flex flex-col gap-2">
+            {% for e in yaklasan_etkinlikler %}
+                <li><a class="text-primary-600 dark:text-primary-500" href="{% url 'admin:icerik_etkinlik_change' e.pk %}">{{ e.baslik }}</a>
+                    <span class="text-subtle">— {{ e.baslangic|date:"j F Y H:i" }}</span></li>
+            {% empty %}<li class="text-subtle">Yaklaşan etkinlik yok.</li>{% endfor %}
+            </ul>
+        {% endcomponent %}
+    </div>
+</div>
+{% endblock %}
