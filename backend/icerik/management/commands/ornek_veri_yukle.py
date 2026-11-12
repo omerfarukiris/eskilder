@@ -11,6 +11,7 @@ from django.db import transaction
 from django.utils import timezone
 from PIL import Image, ImageDraw
 
+from icerik.illustrasyon import egitim_gorseli
 from icerik.models import (
     Destekci, Duyuru, EtkiRakami, Etkinlik, EtkinlikFotografi, SiteAyarlari, YonetimKuruluUyesi,
 )
@@ -34,11 +35,11 @@ kargo ya da PTT ile dernek adresimize gönderin. Başvuru tarihleri her dönem D
 """
 
 HAKKIMIZDA = """
-<p><strong>Örnek metin — panelden değiştirin.</strong> Eskilder, Aksaray'ın Eskil ilçesinden yetişen gençlerin
+<p>Eskilder, Aksaray'ın Eskil ilçesinden yetişen gençlerin
 lise ve üniversite eğitimlerini desteklemek için bir araya gelen Eskillilerin kurduğu bir dernektir.</p>
 <p>Gelirimizin tamamı, memleketine gönül vermiş Eskilli iş insanlarının ve hayırseverlerin bağışlarından oluşur.
 Her yıl başvuruları değerlendirip ihtiyaç sahibi öğrencilerimize karşılıksız burs veriyoruz.</p>
-<blockquote>Memleketlinin memleketliye desteği.</blockquote>
+<blockquote>Eskil'in bir çocuğu okursa, bütün Eskil büyür.</blockquote>
 """
 
 KVKK = """
@@ -134,10 +135,10 @@ class Command(BaseCommand):
             ayar.hero_gorsel = yer_tutucu("Örnek açılış fotoğrafı — Eskil", (1920, 1080))
             ayar.save()
 
-        for d in DUYURULAR:
+        for i, d in enumerate(DUYURULAR):
             if not Duyuru.objects.filter(baslik=d["baslik"]).exists():
                 Duyuru.objects.create(baslik=d["baslik"], ozet=d["ozet"], icerik=d["icerik"],
-                                      yayin_tarihi=yerel(d["tarih"]), kapak=yer_tutucu("Burs Başvuruları", renk_index=1))
+                                      yayin_tarihi=yerel(d["tarih"]), kapak=egitim_gorseli(varyant=i))
 
         for i, (etiket, deger) in enumerate(RAKAMLAR):
             EtkiRakami.objects.get_or_create(etiket=etiket, defaults={"deger": deger, "sira": i})

@@ -31,3 +31,21 @@ def test_ornek_veri_gercek_bilgiler_ve_etkinlikler():
     gecmis = Etkinlik.objects.get(baslangic__lt=timezone.now())
     assert gecmis.fotograflar.count() == 3 and gecmis.kapak
     assert Duyuru.objects.get(slug__startswith="2024-2025").yayin_tarihi.year == 2024
+
+
+@pytest.mark.django_db
+def test_hakkimizda_ornek_notu_yok_ve_yeni_alinti():
+    call_command("ornek_veri_yukle")
+    metin = SiteAyarlari.yukle().hakkimizda_metni
+    assert "Örnek metin" not in metin and "panelden" not in metin
+    assert "bütün Eskil büyür" in metin and "lise ve üniversite" in metin
+
+
+@pytest.mark.django_db
+def test_burs_duyurulari_egitim_gorselli():
+    from PIL import Image
+
+    call_command("ornek_veri_yukle")
+    for d in Duyuru.objects.all():
+        assert d.kapak.name.split("/")[-1].startswith("egitim")
+        assert Image.open(d.kapak.path).size == (1600, 1000)
