@@ -12,7 +12,7 @@ export default function Etkinlikler() {
   const [zaman, setZaman] = useState(null);
   const [sayfa, setSayfa] = useState(1);
   const yaklasanKontrol = useVeri("/etkinlikler/?zaman=yaklasan");
-  useBaslik("Etkinlikler & Buluşmalar");
+  useBaslik("Etkinlikler ve Buluşmalar");
 
   useEffect(() => {
     if (zaman || yaklasanKontrol.yukleniyor) return;
@@ -24,7 +24,7 @@ export default function Etkinlikler() {
 
   return (
     <>
-      <SayfaUst etiket="Bir araya geliyoruz" baslik="Etkinlikler & Buluşmalar"
+      <SayfaUst etiket="Bir araya geliyoruz" baslik="Etkinlikler ve Buluşmalar"
         aciklama="Eskilli destekçilerimiz, öğrencilerimiz ve aileleriyle buluştuğumuz anlar." />
       <section className="bolum">
         <div className="kap">

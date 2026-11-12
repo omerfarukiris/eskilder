@@ -166,7 +166,7 @@ class Etkinlik(SlugluModel):
 
     class Meta:
         verbose_name = "Etkinlik / Buluşma"
-        verbose_name_plural = "Etkinlikler & Buluşmalar"
+        verbose_name_plural = "Etkinlikler ve Buluşmalar"
         ordering = ["-baslangic"]
 
 

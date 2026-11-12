@@ -177,7 +177,7 @@ UNFOLD = {
                 "items": [
                     {"title": "Ana Sayfa (özet)", "icon": "dashboard", "link": reverse_lazy("admin:index")},
                     {"title": "Duyurular", "icon": "campaign", "link": _baglanti("icerik_duyuru_changelist")},
-                    {"title": "Etkinlikler & Buluşmalar", "icon": "event", "link": _baglanti("icerik_etkinlik_changelist")},
+                    {"title": "Etkinlikler ve Buluşmalar", "icon": "event", "link": _baglanti("icerik_etkinlik_changelist")},
                     {"title": "Destekçiler", "icon": "handshake", "link": _baglanti("icerik_destekci_changelist")},
                     {"title": "Gelen Mesajlar", "icon": "mail", "link": _baglanti("iletisim_iletisimmesaji_changelist"),
                      "badge": "icerik.views_yonetim.okunmamis_mesaj_rozeti"},
