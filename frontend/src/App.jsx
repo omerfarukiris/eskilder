@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AyarlarSaglayici } from "./api.jsx";
+import Acilis from "./bilesenler/Acilis.jsx";
 import Alt from "./bilesenler/Alt.jsx";
 import Ust from "./bilesenler/Ust.jsx";
 import Anasayfa from "./sayfalar/Anasayfa.jsx";
@@ -27,6 +28,7 @@ export function Uygulama() {
   return (
     <div className="sayfa-cerceve">
       <a href="#icerik" className="atla">İçeriğe geç</a>
+      <Acilis />
       <SayfaBasinaKaydir />
       <Ust />
       <main id="icerik">

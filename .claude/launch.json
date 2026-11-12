@@ -6,6 +6,12 @@
       "runtimeExecutable": "bash",
       "runtimeArgs": ["-c", "cd backend && DEBUG=1 ../.venv/bin/python manage.py runserver 8000"],
       "port": 8000
+    },
+    {
+      "name": "frontend",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd frontend && npx vite --port 5173 --strictPort"],
+      "port": 5173
     }
   ]
 }

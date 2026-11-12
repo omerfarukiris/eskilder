@@ -9,7 +9,7 @@ from django.core.files.base import ContentFile
 from django.core.management.base import BaseCommand
 from django.db import transaction
 from django.utils import timezone
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw
 
 from icerik.models import (
     Destekci, Duyuru, EtkiRakami, Etkinlik, EtkinlikFotografi, SiteAyarlari, YonetimKuruluUyesi,
@@ -85,15 +85,20 @@ KURUL = [("Örnek Ad Soyad", "Başkan"), ("Örnek Ad Soyad 2", "Başkan Yardımc
 
 
 def yer_tutucu(metin: str, boyut=(1600, 900), renk_index=0) -> ContentFile:
+    """Yazısız, markalı degrade yer tutucu görsel (metin yalnızca dosya adı tohumu olarak kullanılır)."""
     bas, son = RENKLER[renk_index % len(RENKLER)]
     resim = Image.new("RGB", boyut, bas)
-    ciz = ImageDraw.Draw(resim)
+    ciz = ImageDraw.Draw(resim, "RGBA")
     for x in range(boyut[0]):
         t = x / boyut[0]
         ciz.line([(x, 0), (x, boyut[1])], fill=tuple(int(bas[i] + (son[i] - bas[i]) * t) for i in range(3)))
-    font = ImageFont.load_default(size=max(28, boyut[1] // 12))
-    kutu = ciz.textbbox((0, 0), metin, font=font)
-    ciz.text(((boyut[0] - kutu[2]) / 2, (boyut[1] - kutu[3]) / 2), metin, fill=(255, 250, 240), font=font)
+    w, h = boyut
+    tohum = sum(map(ord, metin))
+    for i in range(5):
+        r = int(h * (0.25 + ((tohum + i * 37) % 40) / 100))
+        cx = int(w * (((tohum * (i + 3)) % 100) / 100))
+        cy = int(h * (((tohum * (i + 7)) % 100) / 100))
+        ciz.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(255, 250, 240, 18))
     tampon = io.BytesIO()
     resim.save(tampon, "JPEG", quality=85)
     return ContentFile(tampon.getvalue(), name="ornek.jpg")

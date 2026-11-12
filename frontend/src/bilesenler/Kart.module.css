@@ -1,0 +1,16 @@
+.izgara { display: grid; gap: 24px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+.kart { background: var(--renk-yuzey); border-radius: var(--yaricap); box-shadow: var(--golge); overflow: hidden; transition: transform var(--gecis), box-shadow var(--gecis); }
+.kart:hover { transform: translateY(-3px); box-shadow: var(--golge-buyuk); }
+.bag { display: flex; flex-direction: column; height: 100%; color: inherit; text-decoration: none; }
+.bag:hover { color: inherit; }
+.gorsel { position: relative; aspect-ratio: 16 / 10; background: var(--renk-ana-acik); overflow: hidden; }
+.gorsel img { width: 100%; height: 100%; object-fit: cover; transition: transform 400ms ease; }
+.kart:hover .gorsel img { transform: scale(1.04); }
+.bosGorsel { position: absolute; inset: 0; display: grid; place-items: center; font: 700 4rem var(--font-baslik); color: rgb(31 77 58 / 25%); background: linear-gradient(135deg, var(--renk-ana-acik), var(--renk-vurgu-acik)); }
+.rozet { position: absolute; top: 12px; left: 12px; background: var(--renk-vurgu); color: #fff; font-size: .78rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
+.govde { display: flex; flex-direction: column; gap: 6px; padding: 20px 22px 22px; flex: 1; }
+.ust { font-size: .85rem; color: var(--renk-metin-soluk); }
+.baslik { font-size: 1.2rem; margin: 0; }
+.ozet { margin: 0; color: var(--renk-metin-soluk); font-size: .95rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.devam { margin-top: auto; padding-top: 10px; font-weight: 600; font-size: .92rem; color: var(--renk-ana); }
+.iskelet { height: 340px; border-radius: var(--yaricap); }

@@ -1,0 +1,46 @@
+.hero { position: relative; min-height: min(86vh, 760px); display: flex; align-items: center; background: var(--renk-ana-koyu); color: #fff; overflow: hidden; isolation: isolate; }
+.heroGorsel { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; animation: yakinlas 14s ease-out forwards; }
+.heroOrtu { position: absolute; inset: 0; z-index: -1; background: linear-gradient(100deg, rgb(20 51 38 / 92%) 0%, rgb(20 51 38 / 70%) 45%, rgb(20 51 38 / 25%) 100%); }
+.heroIc { padding-top: 72px; padding-bottom: 96px; animation: belir 700ms 200ms ease-out both; }
+.heroEtiket { display: inline-block; padding: 6px 14px; border: 1px solid rgb(243 227 199 / 50%); border-radius: 999px; color: var(--renk-vurgu-acik); font-size: .85rem; letter-spacing: .08em; margin-bottom: 22px; }
+.hero h1 { color: #fff; max-width: 14ch; font-size: clamp(2.5rem, 7vw, 4.6rem); }
+.heroMetin { max-width: 560px; font-size: clamp(1.05rem, 2vw, 1.25rem); color: rgb(255 255 255 / 86%); margin: 18px 0 32px; }
+.heroButonlar { display: flex; gap: 12px; flex-wrap: wrap; }
+.butonAcik { color: #fff; border-color: rgb(255 255 255 / 60%); }
+.butonAcik:hover { background: #fff; color: var(--renk-ana-koyu); }
+@keyframes yakinlas { from { transform: scale(1.08); } to { transform: scale(1); } }
+@keyframes belir { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+.rakamBand { position: relative; z-index: 2; margin-top: -56px; }
+.rakamlar { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; padding: 0; margin: 0 auto; background: var(--renk-yuzey); border-radius: var(--yaricap); box-shadow: var(--golge-buyuk); }
+.rakamlar li { padding: 28px 24px; text-align: center; border-right: 1px solid var(--renk-cizgi); }
+.rakamlar li:last-child { border-right: 0; }
+.rakamlar strong { display: block; font: 700 clamp(2rem, 4vw, 2.8rem)/1.1 var(--font-baslik); color: var(--renk-ana); }
+.rakamlar span { font-size: .92rem; color: var(--renk-metin-soluk); }
+@media (max-width: 760px) {
+  .rakamlar { grid-template-columns: repeat(2, 1fr); width: calc(100% - 2 * var(--kenar)); }
+  .rakamlar li:nth-child(2n) { border-right: 0; }
+  .rakamlar li:nth-child(-n + 2) { border-bottom: 1px solid var(--renk-cizgi); }
+}
+
+.etkinlikBolum { background: var(--renk-ana-acik); }
+.etkinlik { display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center; background: var(--renk-yuzey); padding: 24px; border-radius: var(--yaricap); box-shadow: var(--golge); text-decoration: none; color: inherit; transition: transform var(--gecis); }
+.etkinlik:hover { transform: translateY(-2px); color: inherit; }
+.etkinlik h3 { margin: 4px 0 4px; font-size: 1.5rem; }
+.etkinlik p { margin: 0; }
+.takvim { display: grid; place-items: center; width: 88px; height: 96px; border-radius: 12px; background: var(--renk-ana); color: #fff; line-height: 1; }
+.takvim span { font: 700 2.4rem var(--font-baslik); }
+.takvim small { text-transform: uppercase; letter-spacing: .1em; color: var(--renk-vurgu-acik); }
+.tur { font-size: .8rem; font-weight: 600; color: var(--renk-vurgu); text-transform: uppercase; letter-spacing: .1em; }
+.ok { font-size: 1.6rem; color: var(--renk-ana); }
+@media (max-width: 600px) { .etkinlik { grid-template-columns: auto 1fr; } .ok { display: none; } .takvim { width: 70px; height: 80px; } }
+
+.serit { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+.serit li { display: grid; place-items: center; min-height: 96px; padding: 16px; background: var(--renk-yuzey); border: 1px solid var(--renk-cizgi); border-radius: var(--yaricap); text-align: center; font-family: var(--font-baslik); font-weight: 600; color: var(--renk-ana-koyu); }
+.serit img { max-height: 56px; width: auto; filter: grayscale(1); opacity: .8; transition: filter var(--gecis), opacity var(--gecis); }
+.serit li:hover img { filter: none; opacity: 1; }
+
+.cagri { background: linear-gradient(120deg, var(--renk-ana) 0%, var(--renk-ana-koyu) 100%); color: #fff; padding: clamp(48px, 7vw, 80px) 0; }
+.cagriIc { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.cagri h2 { color: #fff; }
+.cagri p { color: rgb(255 255 255 / 82%); max-width: 600px; margin: 0; }
