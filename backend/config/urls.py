@@ -20,8 +20,8 @@ urlpatterns = [
     path("api/ayarlar/", icerik_api.ayarlar, name="ayarlar"),
     path("api/", include(router.urls)),
     path("yonetim/", admin.site.urls),
-    re_path(r"^duyurular/(?P<slug>[-a-z0-9]+)/?$", og.duyuru_sayfasi, name="duyuru_sayfasi"),
-    re_path(r"^etkinlikler/(?P<slug>[-a-z0-9]+)/?$", og.etkinlik_sayfasi, name="etkinlik_sayfasi"),
+    re_path(r"^duyurular/(?P<slug>[-a-z0-9_]+)/?$", og.duyuru_sayfasi, name="duyuru_sayfasi"),
+    re_path(r"^etkinlikler/(?P<slug>[-a-z0-9_]+)/?$", og.etkinlik_sayfasi, name="etkinlik_sayfasi"),
     path("sitemap.xml", sitemap.sitemap, name="sitemap"),
     path("robots.txt", sitemap.robots, name="robots"),
 ]

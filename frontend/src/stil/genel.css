@@ -58,3 +58,7 @@ p { margin: 0 0 1em; }
 main { flex: 1; }
 .atla { position: absolute; left: -999px; top: 8px; z-index: 100; background: var(--renk-ana); color: #fff; padding: 10px 16px; border-radius: 8px; }
 .atla:focus { left: 8px; }
+.zengin div { margin: 0 0 1em; }
+.zengin h1 { font-size: 1.9rem; margin-top: 1.2em; }
+.zengin h4 { font-size: 1.1rem; margin-top: 1em; }
+.zengin pre { white-space: pre-wrap; background: var(--renk-ana-acik); padding: 14px 16px; border-radius: var(--yaricap-kucuk); font-size: .92rem; overflow-x: auto; }

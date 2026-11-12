@@ -8,7 +8,7 @@ _TR = str.maketrans({
 
 def tr_slugify(metin: str) -> str:
     """Türkçe harfleri ASCII karşılığına çevirip slug üretir (Django slugify 'ı'yı düşürür)."""
-    return slugify((metin or "").translate(_TR)) or "icerik"
+    return slugify((metin or "").translate(_TR).replace("_", " ")) or "icerik"
 
 
 def benzersiz_slug(model, metin: str, haric_pk=None, alan: str = "slug", max_uzunluk: int = 200) -> str:

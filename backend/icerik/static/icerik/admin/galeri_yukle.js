@@ -23,11 +23,13 @@
       var li = satir((i + 1) + "/" + dosyalar.length + " " + dosyalar[i].name + " — yükleniyor…");
       try {
         var kucuk = window.eskilderKucult ? await window.eskilderKucult(dosyalar[i]) : dosyalar[i];
+        if (kucuk.size > (window.eskilderUstSinir || 4 * 1024 * 1024)) throw new Error(window.eskilderBuyukMesaj || "Dosya çok büyük (en fazla 4 MB).");
         var veri = new FormData();
         veri.append("dosya", kucuk);
         var yanit = await fetch(kutu.dataset.url, { method: "POST", body: veri, headers: { "X-CSRFToken": csrf }, credentials: "same-origin" });
         var govde = await yanit.json().catch(function () { return {}; });
-        if (!yanit.ok) throw new Error(govde.hata || ("Hata " + yanit.status));
+        if (yanit.status === 413) throw new Error("Dosya çok büyük (en fazla 4 MB).");
+        if (!yanit.ok) throw new Error(govde.hata || ("Yükleme başarısız (" + yanit.status + ")."));
         li.textContent = "✓ " + dosyalar[i].name;
       } catch (hata) {
         hataVar = true;

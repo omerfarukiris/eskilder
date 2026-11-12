@@ -1,6 +1,10 @@
 import nh3
 
-IZINLI_ETIKETLER = {"p", "br", "strong", "b", "em", "i", "u", "a", "ul", "ol", "li", "h2", "h3", "blockquote"}
+# Unfold (Trix) düzenleyicisi paragrafları <div> olarak yazar; başlık ve biçim düğmelerinin etiketleri de izinli.
+IZINLI_ETIKETLER = {
+    "p", "div", "br", "strong", "b", "em", "i", "u", "del", "s", "a", "ul", "ol", "li",
+    "h1", "h2", "h3", "h4", "blockquote", "pre", "code",
+}
 
 
 def temiz_html(html) -> str:

@@ -10,6 +10,7 @@ import urllib.request
 
 from django.conf import settings
 from django.http import HttpResponse
+from django.utils import timezone
 
 from .api import gorunur_duyurular, gorunur_etkinlikler
 from .models import SiteAyarlari
@@ -93,5 +94,5 @@ def etkinlik_sayfasi(request, slug):
     e = gorunur_etkinlikler().filter(slug=slug).first()
     aciklama = ""
     if e:
-        aciklama = f"{e.get_tur_display()} · {e.baslangic:%d.%m.%Y}" + (f" · {e.yer}" if e.yer else "")
+        aciklama = f"{e.get_tur_display()} · {timezone.localtime(e.baslangic):%d.%m.%Y}" + (f" · {e.yer}" if e.yer else "")
     return _sayfa(request, e, aciklama, f"/etkinlikler/{slug}")

@@ -92,6 +92,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = "tr"
+# Yalnız Türkçe: tarayıcı dili İngilizce olsa bile panel ve hata mesajları Türkçe kalır.
+LANGUAGES = [("tr", "Türkçe")]
 TIME_ZONE = "Europe/Istanbul"
 USE_I18N = True
 USE_TZ = True
@@ -116,6 +118,10 @@ LOGGING = {
 }
 
 from ortak.depolama import storages_ayari  # noqa: E402
+
+# boto3 >= 1.36 varsayılan CRC32/aws-chunked yüklemeleri bazı S3 uyumlu depolarda reddediliyor.
+os.environ.setdefault("AWS_REQUEST_CHECKSUM_CALCULATION", "when_required")
+os.environ.setdefault("AWS_RESPONSE_CHECKSUM_VALIDATION", "when_required")
 
 STORAGES = storages_ayari(os.environ)
 

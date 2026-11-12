@@ -3,6 +3,23 @@
 (function () {
   "use strict";
   var EN_UZUN = 1920;
+  var UST_SINIR = 4 * 1024 * 1024; // Vercel 4,5 MB istek sınırının altında kal
+  var BUYUK_MESAJ = "Bu dosya çok büyük (en fazla 4 MB). Lütfen daha küçük bir dosya seçin; fotoğraflar için JPG veya PNG kullanın.";
+
+  function uyar(girdi, mesaj) {
+    var kutu = girdi.parentElement.querySelector("[data-eskilder-uyari]");
+    if (!kutu) {
+      kutu = document.createElement("p");
+      kutu.setAttribute("data-eskilder-uyari", "");
+      kutu.setAttribute("role", "alert");
+      kutu.style.cssText = "color:#b3261e;font-weight:600;margin:6px 0 0;";
+      girdi.parentElement.appendChild(kutu);
+    }
+    kutu.textContent = mesaj || "";
+    kutu.hidden = !mesaj;
+  }
+  window.eskilderUstSinir = UST_SINIR;
+  window.eskilderBuyukMesaj = BUYUK_MESAJ;
 
   function kucult(dosya) {
     return new Promise(function (coz) {
@@ -36,8 +53,15 @@
     var girdi = olay.target;
     if (!(girdi instanceof HTMLInputElement) || girdi.type !== "file" || girdi.multiple) return;
     if (!girdi.files || !girdi.files.length || girdi.dataset.kucultuldu === "1") return;
-    if (!/image/.test(girdi.accept || "") && !/^image\//.test(girdi.files[0].type)) return;
-    kucult(girdi.files[0]).then(function (yeni) {
+    uyar(girdi, "");
+    var gorselMi = /image/.test(girdi.accept || "") || /^image\//.test(girdi.files[0].type);
+    var islem = gorselMi ? kucult(girdi.files[0]) : Promise.resolve(girdi.files[0]);
+    islem.then(function (yeni) {
+      if (yeni.size > UST_SINIR) {
+        girdi.value = "";
+        uyar(girdi, BUYUK_MESAJ);
+        return;
+      }
       if (yeni === girdi.files[0]) return;
       var aktarim = new DataTransfer();
       aktarim.items.add(yeni);
