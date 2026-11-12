@@ -3,6 +3,7 @@ from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.utils import timezone
 
+from ortak.gorsel import gorsel_dogrula, kucult, paylasim_gorseli_uret
 from ortak.html import temiz_html
 from ortak.slug import benzersiz_slug
 
@@ -12,6 +13,28 @@ DOKUMAN_UST_SINIR = 4 * 1024 * 1024
 def dosya_boyutu_4mb(dosya):
     if dosya and dosya.size > DOKUMAN_UST_SINIR:
         raise ValidationError("Dosya en fazla 4 MB olabilir. Lütfen daha küçük bir dosya yükleyin.")
+
+
+def _yeni_yukleme_mi(alan) -> bool:
+    """Alan bu kayıtta yeni yüklenmiş (henüz depoya yazılmamış) bir dosya taşıyor mu?"""
+    return bool(alan) and not getattr(alan, "_committed", True)
+
+
+def _gorselleri_isle(nesne, alanlar) -> None:
+    for ad in alanlar:
+        alan = getattr(nesne, ad)
+        if _yeni_yukleme_mi(alan):
+            setattr(nesne, ad, kucult(alan.file))
+
+
+def _gorselleri_dogrula(nesne, alanlar) -> None:
+    for ad in alanlar:
+        alan = getattr(nesne, ad)
+        if _yeni_yukleme_mi(alan):
+            try:
+                gorsel_dogrula(alan.file)
+            except ValidationError as hata:
+                raise ValidationError({ad: hata.messages}) from hata
 
 
 class SiteAyarlari(models.Model):
@@ -49,12 +72,16 @@ class SiteAyarlari(models.Model):
 
     def save(self, *args, **kwargs):
         self.pk = 1
+        _gorselleri_isle(self, ("logo", "hero_gorsel"))
         for alan in ("hakkimizda_metni", "burs_metni", "kvkk_metni"):
             setattr(self, alan, temiz_html(getattr(self, alan)))
         super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
         pass
+
+    def clean(self):
+        _gorselleri_dogrula(self, ("logo", "hero_gorsel"))
 
     @classmethod
     def yukle(cls):
@@ -102,7 +129,16 @@ class SlugluModel(models.Model):
             self.slug = benzersiz_slug(type(self), self.baslik, haric_pk=self.pk)
         if self.ZENGIN_ALAN:
             setattr(self, self.ZENGIN_ALAN, temiz_html(getattr(self, self.ZENGIN_ALAN)))
+        if _yeni_yukleme_mi(self.kapak):
+            self.kapak = kucult(self.kapak.file)
+            self.kapak.file.seek(0)
+            self.paylasim_gorseli = paylasim_gorseli_uret(self.kapak.file)
+        elif not self.kapak:
+            self.paylasim_gorseli = None
         super().save(*args, **kwargs)
+
+    def clean(self):
+        _gorselleri_dogrula(self, ("kapak",))
 
 
 class Duyuru(SlugluModel):
@@ -144,6 +180,13 @@ class FotografModel(SiraliModel):
     def __str__(self):
         return self.aciklama or f"Fotoğraf {self.pk}"
 
+    def clean(self):
+        _gorselleri_dogrula(self, ("gorsel",))
+
+    def save(self, *args, **kwargs):
+        _gorselleri_isle(self, ("gorsel",))
+        super().save(*args, **kwargs)
+
 
 class DuyuruFotografi(FotografModel):
     duyuru = models.ForeignKey(Duyuru, on_delete=models.CASCADE, related_name="fotograflar")
@@ -180,6 +223,13 @@ class Destekci(SiraliModel):
     def __str__(self):
         return self.ad
 
+    def clean(self):
+        _gorselleri_dogrula(self, ("logo",))
+
+    def save(self, *args, **kwargs):
+        _gorselleri_isle(self, ("logo",))
+        super().save(*args, **kwargs)
+
 
 class YonetimKuruluUyesi(SiraliModel):
     ad_soyad = models.CharField("Ad soyad", max_length=120)
@@ -192,6 +242,13 @@ class YonetimKuruluUyesi(SiraliModel):
 
     def __str__(self):
         return f"{self.ad_soyad} ({self.gorev})"
+
+    def clean(self):
+        _gorselleri_dogrula(self, ("fotograf",))
+
+    def save(self, *args, **kwargs):
+        _gorselleri_isle(self, ("fotograf",))
+        super().save(*args, **kwargs)
 
 
 class Dokuman(SiraliModel):

@@ -107,3 +107,7 @@ LOGGING = {
     "handlers": {"console": {"class": "logging.StreamHandler"}},
     "root": {"handlers": ["console"], "level": "INFO"},
 }
+
+from ortak.depolama import storages_ayari  # noqa: E402
+
+STORAGES = storages_ayari(os.environ)
