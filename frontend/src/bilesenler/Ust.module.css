@@ -1,0 +1,29 @@
+.ust { position: sticky; top: 0; z-index: 50; background: rgb(250 247 242 / 92%); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--renk-cizgi); }
+.ic { display: flex; align-items: center; gap: 24px; height: var(--ust-yukseklik); }
+.logoBag { text-decoration: none; flex-shrink: 0; }
+.menu { margin-left: auto; }
+.menu ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.menu a { display: block; padding: 8px 12px; border-radius: 999px; color: var(--renk-metin); text-decoration: none; font-weight: 500; font-size: .95rem; transition: background var(--gecis), color var(--gecis); }
+.menu a:hover { background: var(--renk-ana-acik); color: var(--renk-ana-koyu); }
+.menu a.aktif { color: var(--renk-ana); background: var(--renk-ana-acik); }
+.mobilCta { display: none; }
+.cta { min-height: 42px; padding: 0 18px; font-size: .95rem; }
+.hamburger { display: none; margin-left: auto; width: 48px; height: 48px; border: 0; background: transparent; cursor: pointer; border-radius: 12px; position: relative; }
+.hamburger span { position: absolute; left: 13px; right: 13px; height: 2px; background: var(--renk-ana-koyu); border-radius: 2px; transition: transform var(--gecis), opacity var(--gecis); }
+.hamburger span:nth-child(1) { top: 17px; }
+.hamburger span:nth-child(2) { top: 23px; }
+.hamburger span:nth-child(3) { top: 29px; }
+.hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+@media (max-width: 1023px) {
+  .hamburger { display: block; }
+  .cta { display: none; }
+  .menu { position: fixed; inset: var(--ust-yukseklik) 0 auto 0; background: var(--renk-zemin); border-bottom: 1px solid var(--renk-cizgi); box-shadow: var(--golge-buyuk); padding: 12px var(--kenar) 24px; transform: translateY(-8px); opacity: 0; visibility: hidden; transition: opacity var(--gecis), transform var(--gecis), visibility var(--gecis); max-height: calc(100dvh - var(--ust-yukseklik)); overflow-y: auto; }
+  .menuAcik { transform: none; opacity: 1; visibility: visible; }
+  .menu ul { flex-direction: column; gap: 2px; }
+  .menu a { padding: 14px 16px; font-size: 1.05rem; border-radius: 12px; }
+  .mobilCta { display: block; margin-top: 12px; }
+  .mobilCta a { width: 100%; color: #fff; }
+}

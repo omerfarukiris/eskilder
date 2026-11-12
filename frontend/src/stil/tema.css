@@ -1,0 +1,27 @@
+:root {
+  /* Logo gelene kadar yer tutucu palet: koyu yeşil (Eskil bozkırı ve güven) + toprak tonu vurgu. */
+  --renk-ana: #1f4d3a;
+  --renk-ana-koyu: #143326;
+  --renk-ana-acik: #e4efe8;
+  --renk-vurgu: #b2783f;
+  --renk-vurgu-acik: #f3e3c7;
+  --renk-zemin: #faf7f2;
+  --renk-yuzey: #ffffff;
+  --renk-metin: #1d2420;
+  --renk-metin-soluk: #5c665f;
+  --renk-cizgi: #e6e0d6;
+  --renk-hata: #b3261e;
+  --renk-basari: #1e6b3f;
+
+  --font-baslik: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-metin: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --yaricap: 14px;
+  --yaricap-kucuk: 8px;
+  --golge: 0 1px 2px rgb(20 40 30 / 6%), 0 8px 24px rgb(20 40 30 / 8%);
+  --golge-buyuk: 0 20px 50px rgb(20 40 30 / 16%);
+  --icerik-genislik: 1120px;
+  --kenar: 20px;
+  --ust-yukseklik: 72px;
+  --gecis: 180ms ease;
+}

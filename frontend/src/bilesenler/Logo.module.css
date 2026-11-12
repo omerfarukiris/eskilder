@@ -1,0 +1,10 @@
+.logo { display: inline-flex; align-items: center; gap: 10px; color: var(--renk-ana-koyu); }
+.acik { color: #fff; }
+.resim { height: 44px; width: auto; }
+.buyuk.resim { height: 120px; }
+.isaret { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 11px; background: var(--renk-ana); color: var(--renk-vurgu-acik); font: 700 1.5rem/1 var(--font-baslik); }
+.acik .isaret { background: var(--renk-vurgu-acik); color: var(--renk-ana); }
+.yazi { font: 700 1.4rem/1 var(--font-baslik); letter-spacing: -0.01em; }
+.buyuk .isaret { width: 96px; height: 96px; border-radius: 26px; font-size: 3.6rem; }
+.buyuk .yazi { font-size: 3rem; }
+.buyuk { flex-direction: column; gap: 18px; }
