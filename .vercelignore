@@ -1,0 +1,11 @@
+.venv
+.superpowers
+.claude
+**/node_modules
+**/__pycache__
+frontend/dist
+backend/media
+backend/db.sqlite3
+backend/tests
+docs
+.env*

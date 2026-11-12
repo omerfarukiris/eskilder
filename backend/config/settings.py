@@ -21,7 +21,11 @@ if not SECRET_KEY:
     raise RuntimeError("SECRET_KEY ortam değişkeni tanımlı değil.")
 
 ALLOWED_HOSTS = [h.strip() for h in ortam("ALLOWED_HOSTS", "localhost,127.0.0.1,testserver").split(",") if h.strip()]
-CSRF_TRUSTED_ORIGINS = [f"https://{h.lstrip('.')}" for h in ALLOWED_HOSTS if h not in {"localhost", "127.0.0.1", "testserver"}]
+CSRF_TRUSTED_ORIGINS = [
+    f"https://*{h}" if h.startswith(".") else f"https://{h}"
+    for h in ALLOWED_HOSTS
+    if h not in {"localhost", "127.0.0.1", "testserver", "*"}
+]
 SITE_URL = ortam("SITE_URL", "http://localhost:5173").rstrip("/")
 CRON_SECRET = ortam("CRON_SECRET")
 
