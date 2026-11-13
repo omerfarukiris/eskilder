@@ -157,6 +157,7 @@ UNFOLD = {
     "SITE_ICON": lambda request: static("icerik/logo-sade.svg"),
     "SITE_FAVICONS": [{"rel": "icon", "type": "image/svg+xml", "href": lambda request: static("icerik/logo-sade.svg")}],
     "SITE_URL": SITE_URL,
+    "THEME": "light",
     "SHOW_HISTORY": True,
     "SHOW_VIEW_ON_SITE": False,
     "DASHBOARD_CALLBACK": "icerik.views_yonetim.ozet",

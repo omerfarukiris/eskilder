@@ -1,33 +1,41 @@
 {% extends 'admin/base.html' %}
 {% load i18n unfold %}
 
-{% block title %}Özet | {{ site_title }}{% endblock %}
+{% block title %}Ana sayfa | {{ site_title }}{% endblock %}
 
 {% block branding %}
     {% include "unfold/helpers/site_branding.html" %}
 {% endblock %}
 
 {% block content %}
-<div class="flex flex-col gap-6">
-    <div class="grid gap-6 md:grid-cols-3">
-        {% url 'admin:iletisim_iletisimmesaji_changelist' as mesaj_url %}
-        {% component "unfold/components/card.html" with title="Okunmamış mesaj" href=mesaj_url|add:"?durum__exact=yeni" %}
-            <p class="text-3xl font-semibold text-important">{{ okunmamis }}</p>
-        {% endcomponent %}
-        {% url 'admin:icerik_duyuru_add' as duyuru_ekle %}
-        {% component "unfold/components/card.html" with title="Hızlı işlem" href=duyuru_ekle %}
-            <p class="text-important">+ Yeni duyuru ekle</p>
-        {% endcomponent %}
-        {% url 'admin:icerik_etkinlik_add' as etkinlik_ekle %}
-        {% component "unfold/components/card.html" with title="Hızlı işlem" href=etkinlik_ekle %}
-            <p class="text-important">+ Yeni etkinlik / buluşma ekle</p>
-        {% endcomponent %}
+<div class="flex flex-col gap-8 max-w-5xl">
+    <div>
+        <h1 class="font-semibold text-2xl text-important">Hoş geldiniz{% if request.user.first_name %}, {{ request.user.first_name }}{% endif %}!</h1>
+        <p class="text-subtle mt-1">Ne yapmak istiyorsunuz? Bir kutuya tıklayın.</p>
     </div>
-    <div class="grid gap-6 md:grid-cols-2">
+
+    <div class="grid gap-4 sm:grid-cols-2">
+        {% for k in kartlar %}
+        <a href="{{ k.adres }}" class="flex gap-4 items-start bg-white border border-base-200 rounded-default p-5 shadow-xs transition-all hover:border-primary-600 hover:shadow-md dark:bg-base-900 dark:border-base-800">
+            <span class="flex items-center justify-center rounded-default bg-primary-600 text-white shrink-0" style="width:48px;height:48px">
+                <span class="material-symbols-outlined" style="font-size:26px">{{ k.simge }}</span>
+            </span>
+            <span class="flex flex-col gap-1">
+                <span class="font-semibold text-important" style="font-size:16px">
+                    {{ k.baslik }}
+                    {% if k.sayi %}<span class="ml-2 inline-block rounded-full bg-red-600 text-white px-2" style="font-size:12px">{{ k.sayi }} yeni</span>{% endif %}
+                </span>
+                <span class="text-subtle">{{ k.aciklama }}</span>
+            </span>
+        </a>
+        {% endfor %}
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2">
         {% component "unfold/components/card.html" with title="Son duyurular" %}
             <ul class="flex flex-col gap-2">
             {% for d in son_duyurular %}
-                <li><a class="text-primary-600 dark:text-primary-500" href="{% url 'admin:icerik_duyuru_change' d.pk %}">{{ d.baslik }}</a>
+                <li><a class="text-primary-600" href="{% url 'admin:icerik_duyuru_change' d.pk %}">{{ d.baslik }}</a>
                     <span class="text-subtle">— {{ d.yayin_tarihi|date:"j F Y" }}{% if not d.yayinda %} (taslak){% endif %}</span></li>
             {% empty %}<li class="text-subtle">Henüz duyuru yok.</li>{% endfor %}
             </ul>
@@ -35,11 +43,13 @@
         {% component "unfold/components/card.html" with title="Yaklaşan etkinlikler" %}
             <ul class="flex flex-col gap-2">
             {% for e in yaklasan_etkinlikler %}
-                <li><a class="text-primary-600 dark:text-primary-500" href="{% url 'admin:icerik_etkinlik_change' e.pk %}">{{ e.baslik }}</a>
+                <li><a class="text-primary-600" href="{% url 'admin:icerik_etkinlik_change' e.pk %}">{{ e.baslik }}</a>
                     <span class="text-subtle">— {{ e.baslangic|date:"j F Y H:i" }}</span></li>
             {% empty %}<li class="text-subtle">Yaklaşan etkinlik yok.</li>{% endfor %}
             </ul>
         {% endcomponent %}
     </div>
+
+    <p class="text-subtle">İpucu: Sol üstteki <span class="material-symbols-outlined" style="font-size:16px;vertical-align:middle">dock_to_right</span> simgesi menüyü açıp kapatır. Siteyi görmek için sağ üstteki "Siteyi görüntüle" bağlantısını kullanın.</p>
 </div>
 {% endblock %}

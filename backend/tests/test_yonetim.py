@@ -109,3 +109,15 @@ def test_destekci_listesinde_izin_sutunu(editor):
     Destekci.objects.create(ad="Firma X", yayin_izni=False)
     sayfa = editor.get("/yonetim/icerik/destekci/").content.decode()
     assert "Firma X" in sayfa and "yayin_izni" in sayfa
+
+
+def test_ozet_ekrani_sade_yonlendirme_kartlari(editor):
+    sayfa = editor.get("/yonetim/").content.decode()
+    assert "Ne yapmak istiyorsunuz?" in sayfa
+    for adres in ("/yonetim/icerik/duyuru/add/", "/yonetim/icerik/etkinlik/add/", "/yonetim/icerik/destekci/",
+                  "/yonetim/iletisim/iletisimmesaji/", "/yonetim/icerik/siteayarlari/"):
+        assert adres in sayfa
+
+
+def test_panel_acik_temada(settings):
+    assert settings.UNFOLD["THEME"] == "light"
