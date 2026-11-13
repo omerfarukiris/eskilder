@@ -49,3 +49,17 @@ def test_burs_duyurulari_egitim_gorselli():
     for d in Duyuru.objects.all():
         assert d.kapak.name.split("/")[-1].startswith("egitim")
         assert Image.open(d.kapak.path).size == (1600, 1000)
+
+
+@pytest.mark.django_db
+def test_sadece_bossa_secenegi_dolu_veritabanina_dokunmaz():
+    call_command("ornek_veri_yukle")
+    Destekci.objects.filter(ad__startswith="Örnek İzinsiz").delete()
+    call_command("ornek_veri_yukle", "--sadece-bossa")
+    assert Destekci.objects.count() == 4
+
+
+@pytest.mark.django_db
+def test_sadece_bossa_secenegi_bos_veritabanini_doldurur():
+    call_command("ornek_veri_yukle", "--sadece-bossa")
+    assert Duyuru.objects.count() == 2

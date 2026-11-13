@@ -70,20 +70,14 @@ Unfold'un CSS ve JS dosyaları `frontend/public/static/` altında repoya eklenmi
 | `SUPABASE_S3_ACCESS_KEY` / `SUPABASE_S3_SECRET_KEY` | Storage → S3 erişim anahtarı |
 | `SUPABASE_PUBLIC_URL` | `https://<ref>.supabase.co` |
 | `SUPABASE_BUCKET` | `medya` |
+| `YONETICI_KULLANICI` / `YONETICI_SIFRE` | ilk yönetici hesabı (yalnız ilk kurulumda kullanılır) |
 | `EMAIL_HOST`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD` (isteğe bağlı) | Gmail için `smtp.gmail.com` ve bir uygulama şifresi |
 
 ### İlk kurulum
 
-Yukarıdaki değişkenler yerel ortamınızda da tanımlıyken (`DEBUG` olmadan) şu komutları çalıştırın:
+Veritabanı kurulumu Vercel derlemesinde otomatik yapılır (`scripts/vercel_derle.sh`): tablolar kurulur, veritabanı boşsa örnek içerik yüklenir ve `YONETICI_KULLANICI` / `YONETICI_SIFRE` tanımlıysa ilk yönetici hesabı açılır (hesap varsa dokunulmaz). Bu sayede yerel ağın 5432/6543 portlarını engellemesi sorun olmaz.
 
-```bash
-cd backend
-../.venv/bin/python manage.py migrate
-../.venv/bin/python manage.py createsuperuser
-../.venv/bin/python manage.py ornek_veri_yukle
-```
-
-Vercel, GitHub deposundan otomatik derler. Ayarlar `vercel.json` dosyasındadır. Günlük cron (`/api/saglik/`), Supabase'in uykuya geçmesini önler ve süresi dolan kayıtları siler.
+Vercel, GitHub deposundan otomatik derler; ayarlar `vercel.json` dosyasındadır. Günlük cron (`/api/saglik/`) Supabase'in uykuya geçmesini önler ve süresi dolan kayıtları siler.
 
 ## Yönetim paneli kullanımı
 

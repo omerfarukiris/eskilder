@@ -112,8 +112,15 @@ def yerel(dt: datetime):
 class Command(BaseCommand):
     help = "Deneme sürümü için örnek içerik yükler (tekrar çalıştırılabilir)."
 
+    def add_arguments(self, parser):
+        parser.add_argument("--sadece-bossa", action="store_true",
+                            help="Site ayarları daha önce doldurulmuşsa hiçbir şey yapma (Vercel derlemesi için).")
+
     @transaction.atomic
     def handle(self, *args, **opts):
+        if opts.get("sadece_bossa") and SiteAyarlari.objects.exclude(resmi_ad="").exists():
+            self.stdout.write("Veritabanı dolu, örnek veri yüklenmedi.")
+            return
         ayar = SiteAyarlari.yukle()
         if not ayar.resmi_ad:
             ayar.resmi_ad = "Eskil Kültür Eğitim ve Dayanışma Derneği"

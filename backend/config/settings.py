@@ -78,8 +78,9 @@ TEMPLATES = [
 _db_url = ortam("DATABASE_URL")
 if _db_url:
     _db = dj_database_url.parse(_db_url, conn_max_age=0)
-    _db["DISABLE_SERVER_SIDE_CURSORS"] = True
-    _db.setdefault("OPTIONS", {})["prepare_threshold"] = None
+    if "postgresql" in _db["ENGINE"]:
+        _db["DISABLE_SERVER_SIDE_CURSORS"] = True
+        _db.setdefault("OPTIONS", {})["prepare_threshold"] = None
     DATABASES = {"default": _db}
 else:
     DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
