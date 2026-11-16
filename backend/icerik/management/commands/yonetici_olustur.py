@@ -1,6 +1,6 @@
 """YONETICI_KULLANICI ve YONETICI_SIFRE ortam değişkenleri tanımlıysa ilk süper yöneticiyi oluşturur.
 
-Vercel derlemesinde çalışır. Kullanıcı zaten varsa hiçbir şey değiştirmez (panelden değiştirilen şifre korunur).
+Vercel derlemesinde çalışır. Kullanıcı zaten varsa ya da başka bir süper yönetici varsa hiçbir şey değiştirmez (panelden değiştirilen şifre korunur).
 """
 import os
 
@@ -20,6 +20,9 @@ class Command(BaseCommand):
         Kullanici = get_user_model()
         if Kullanici.objects.filter(username=kullanici).exists():
             self.stdout.write(f"'{kullanici}' zaten var, değiştirilmedi.")
+            return
+        if Kullanici.objects.filter(is_superuser=True).exists():
+            self.stdout.write("Zaten bir süper yönetici var (adı değiştirilmiş olabilir); yeni hesap açılmadı.")
             return
         Kullanici.objects.create_superuser(username=kullanici, email="", password=sifre)
         self.stdout.write(self.style.SUCCESS(f"Yönetici '{kullanici}' oluşturuldu."))

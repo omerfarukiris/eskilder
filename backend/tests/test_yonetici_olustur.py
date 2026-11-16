@@ -26,3 +26,11 @@ def test_varsa_sifreyi_degistirmez(monkeypatch):
     monkeypatch.setenv("YONETICI_SIFRE", "Baska-Sifre-456")
     call_command("yonetici_olustur")
     assert User.objects.get(username="eskilder").check_password("Ilk-Sifre-123")
+
+
+def test_baska_super_yonetici_varsa_yeni_hesap_acmaz(monkeypatch):
+    User.objects.create_superuser("aksarayeskil42", password="Mevcut-Sifre-1")
+    monkeypatch.setenv("YONETICI_KULLANICI", "omerfarukiris")
+    monkeypatch.setenv("YONETICI_SIFRE", "Eski-Sifre-123")
+    call_command("yonetici_olustur")
+    assert list(User.objects.values_list("username", flat=True)) == ["aksarayeskil42"]
