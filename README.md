@@ -63,7 +63,7 @@ Unfold'un CSS ve JS dosyaları `frontend/public/static/` altında repoya eklenmi
 | `SECRET_KEY` | uzun rastgele bir metin |
 | `DATABASE_URL` | `postgresql://postgres.<ref>:<şifre>@aws-0-eu-central-1.pooler.supabase.com:6543/postgres` |
 | `ALLOWED_HOSTS` | `.vercel.app` |
-| `SITE_URL` | `https://<proje>.vercel.app` |
+| `SITE_URL` | `https://eskilder-omer-1939.vercel.app` |
 | `CRON_SECRET` | uzun rastgele bir metin |
 | `SUPABASE_S3_ENDPOINT` | `https://<ref>.supabase.co/storage/v1/s3` |
 | `SUPABASE_S3_REGION` | `eu-central-1` |
