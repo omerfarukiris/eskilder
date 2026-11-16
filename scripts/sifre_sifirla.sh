@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Yayındaki yönetim paneli kullanıcısının adını ve/veya şifresini değiştirmek için SQL hazırlar, panoya kopyalar.
+# Yayındaki yönetim paneli kullanıcısının adını ve/veya şifresini değiştirmek için SQL hazırlar (.yonetici.sql).
 # Şifre ekranda görünmez; yalnızca Django'nun tek yönlü özeti (hash) üretilir.
 # Çıkan SQL'i Supabase → SQL Editor'e yapıştırıp çalıştırın.
 set -euo pipefail
@@ -34,8 +34,8 @@ print(make_password(os.environ['SIFRE']))
 unset s1 s2
 
 sql="update auth_user set username = '${yeni}', password = '${ozet}', is_active = true where username = '${eski}' returning username;"
-printf '%s' "$sql" | pbcopy
+( umask 077; printf '%s\n' "$sql" > ../.yonetici.sql )
 echo
-echo "Hazır. SQL komutu panoya kopyalandı (şifrenin kendisi değil, özeti)."
-echo "Şimdi: Supabase → SQL Editor → yapıştırın (⌘V) → Run."
-echo "Sonuçta '${yeni}' satırı görünürse işlem tamamdır. Panele '${yeni}' ve yeni şifrenizle girin."
+echo "Hazır. Komut proje klasöründeki gizli .yonetici.sql dosyasına yazıldı (şifrenin kendisi değil, özeti)."
+echo "Claude'a 'hazır' deyin; Supabase'te o çalıştıracak ve dosyayı silecek."
+echo "Kendiniz yapmak isterseniz: dosyanın içeriğini Supabase → SQL Editor'e yapıştırıp Run'a basın."
