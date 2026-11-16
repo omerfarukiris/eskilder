@@ -1,6 +1,6 @@
 .logo { display: inline-flex; align-items: center; gap: 10px; }
 .amblem { display: grid; place-items: center; flex-shrink: 0; }
-.amblem img { height: 48px; width: auto; }
+.amblem img { height: 48px; width: auto; aspect-ratio: 116 / 102; }
 .yazilar { display: flex; flex-direction: column; line-height: 1; gap: 3px; }
 .ad { font: 800 1.42rem/1 var(--font-metin); letter-spacing: .04em; color: #4f9a32; }
 .yil { font: 700 .8rem/1 Georgia, "Times New Roman", serif; color: #1d1d1d; letter-spacing: .02em; }
