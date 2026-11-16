@@ -24,11 +24,19 @@
       "destination": "/api/index"
     },
     {
-      "source": "/duyurular/([^/]+)/?",
+      "source": "/duyurular/:slug",
       "destination": "/api/index"
     },
     {
-      "source": "/etkinlikler/([^/]+)/?",
+      "source": "/duyurular/:slug/",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/etkinlikler/:slug",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/etkinlikler/:slug/",
       "destination": "/api/index"
     },
     {
