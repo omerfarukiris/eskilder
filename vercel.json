@@ -77,5 +77,72 @@
       "path": "/api/saglik/",
       "schedule": "0 6 * * *"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/anasayfa.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/i/anasayfa.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/hakkinda.html",
+      "destination": "/hakkimizda",
+      "permanent": true
+    },
+    {
+      "source": "/i/hakkinda.html",
+      "destination": "/hakkimizda",
+      "permanent": true
+    },
+    {
+      "source": "/duyurular.html",
+      "destination": "/duyurular",
+      "permanent": true
+    },
+    {
+      "source": "/i/duyurular.html",
+      "destination": "/duyurular",
+      "permanent": true
+    },
+    {
+      "source": "/duyuru.html",
+      "destination": "/duyurular",
+      "permanent": true
+    },
+    {
+      "source": "/i/duyuru.html",
+      "destination": "/duyurular",
+      "permanent": true
+    },
+    {
+      "source": "/iletisim.html",
+      "destination": "/iletisim",
+      "permanent": true
+    },
+    {
+      "source": "/i/iletisim.html",
+      "destination": "/iletisim",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/i/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/duyurular_:eski.html",
+      "destination": "/duyurular",
+      "permanent": true
+    }
   ]
 }
